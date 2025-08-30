@@ -16,9 +16,7 @@ const Home = () => {
         <Link to="/products" className="btn">
           Shop Now
         </Link>
-        <Link to="/products" className="btn btn-outline" style={{marginLeft: '10px'}}>
-          View All Products
-        </Link>
+       
       </div>
     </section>
   );
