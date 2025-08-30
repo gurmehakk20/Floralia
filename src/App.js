@@ -148,6 +148,7 @@ const handleUpdateQuantity = (name, newQuantity) => {
           }
         }));
         alert("Profile updated successfully!");
+        navigate('/profile'); // Navigate back to profile after update
       } catch (error) {
         console.error("Error updating profile:", error);
         alert("Failed to update profile.");
@@ -196,6 +197,7 @@ const handleUpdateQuantity = (name, newQuantity) => {
         await setDoc(userRef, { preferences: updatedPreferences }, { merge: true });
         setUser(prevUser => ({ ...prevUser, preferences: updatedPreferences }));
         alert("Preferences updated successfully!");
+        navigate('/profile'); // Navigate back to profile after update
       } catch (error) {
         console.error("Error updating preferences:", error);
         alert("Failed to update preferences.");

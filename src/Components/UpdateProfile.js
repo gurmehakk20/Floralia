@@ -37,91 +37,94 @@ const UpdateProfile = ({ user, onUpdate }) => {
   };
 
   return (
-    <form className="profile-form" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label>First Name</label>
-        <input
-          type="text"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group">
-        <label>Last Name</label>
-        <input
-          type="text"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group">
-        <label>Date of Birth</label>
-        <input
-          type="date"
-          name="dob"
-          value={formData.dob}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group">
-        <label>Phone</label>
-        <input
-          type="tel"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-        />
-      </div>
-      <h3>Address</h3>
-      <div className="form-group">
-        <label>Street</label>
-        <input
-          type="text"
-          name="street"
-          value={formData.street}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group">
-        <label>City</label>
-        <input
-          type="text"
-          name="city"
-          value={formData.city}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group">
-        <label>State</label>
-        <input
-          type="text"
-          name="state"
-          value={formData.state}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group">
-        <label>Zip</label>
-        <input
-          type="text"
-          name="zip"
-          value={formData.zip}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group">
-        <label>Country</label>
-        <input
-          type="text"
-          name="country"
-          value={formData.country}
-          onChange={handleChange}
-        />
-      </div>
-      <button type="submit" className="btn">Update Profile</button>
-    </form>
+    <div className="update-profile-container">
+      <h2>Update Profile Information</h2>
+      <form className="profile-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>First Name</label>
+          <input
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Date of Birth</label>
+          <input
+            type="date"
+            name="dob"
+            value={formData.dob}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Phone</label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+          />
+        </div>
+        <h3>Address</h3>
+        <div className="form-group">
+          <label>Street</label>
+          <input
+            type="text"
+            name="street"
+            value={formData.street}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>City</label>
+          <input
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>State</label>
+          <input
+            type="text"
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Zip</label>
+          <input
+            type="text"
+            name="zip"
+            value={formData.zip}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Country</label>
+          <input
+            type="text"
+            name="country"
+            value={formData.country}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit" className="btn">Update Profile</button>
+      </form>
+    </div>
   );
 };
 

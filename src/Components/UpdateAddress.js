@@ -53,48 +53,59 @@ const UpdateAddress = ({ user, onUpdateAddresses, navigate }) => {
 
   return (
     <div className="update-addresses-container">
-      <h2>Your Addresses</h2>
       {addresses.length > 0 ? (
-        addresses.map((address, index) => (
-          <div key={index} className="address-item form-group">
-            <label>Street</label>
-            <input
-              type="text"
-              value={address.street}
-              onChange={(e) => handleAddressChange(e, index, "street")}
-            />
-            <label>City</label>
-            <input
-              type="text"
-              value={address.city}
-              onChange={(e) => handleAddressChange(e, index, "city")}
-            />
-            <label>State</label>
-            <input
-              type="text"
-              value={address.state}
-              onChange={(e) => handleAddressChange(e, index, "state")}
-            />
-            <label>Zip</label>
-            <input
-              type="text"
-              value={address.zip}
-              onChange={(e) => handleAddressChange(e, index, "zip")}
-            />
-            <label>Country</label>
-            <input
-              type="text"
-              value={address.country}
-              onChange={(e) => handleAddressChange(e, index, "country")}
-            />
-            <button type="button" onClick={() => handleDeleteAddress(index)} className="btn delete-btn">Delete</button>
-          </div>
-        ))
+        <div className="existing-addresses-section">
+          <h2>Your Saved Addresses</h2>
+          {addresses.map((address, index) => (
+            <div key={index} className="address-item">
+              <div className="form-group">
+                <label>Street</label>
+                <input
+                  type="text"
+                  value={address.street}
+                  onChange={(e) => handleAddressChange(e, index, "street")}
+                />
+              </div>
+              <div className="form-group">
+                <label>City</label>
+                <input
+                  type="text"
+                  value={address.city}
+                  onChange={(e) => handleAddressChange(e, index, "city")}
+                />
+              </div>
+              <div className="form-group">
+                <label>State</label>
+                <input
+                  type="text"
+                  value={address.state}
+                  onChange={(e) => handleAddressChange(e, index, "state")}
+                />
+              </div>
+              <div className="form-group">
+                <label>Zip</label>
+                <input
+                  type="text"
+                  value={address.zip}
+                  onChange={(e) => handleAddressChange(e, index, "zip")}
+                />
+              </div>
+              <div className="form-group">
+                <label>Country</label>
+                <input
+                  type="text"
+                  value={address.country}
+                  onChange={(e) => handleAddressChange(e, index, "country")}
+                />
+              </div>
+              <button type="button" onClick={() => handleDeleteAddress(index)} className="btn delete-btn">Delete</button>
+            </div>
+          ))}
+          <button onClick={handleUpdateAddress} className="btn">Save All Addresses</button>
+        </div>
       ) : (
-        <p>No addresses saved.</p>
+        <p>No addresses saved. Add one below!</p>
       )}
-
-      <button onClick={handleUpdateAddress} className="btn">Save Addresses</button>
 
       <h3>Add New Address</h3>
       <form onSubmit={handleAddAddress} className="profile-form">

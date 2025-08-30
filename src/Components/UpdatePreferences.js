@@ -24,32 +24,34 @@ const UpdatePreferences = ({ user, onUpdatePreferences, navigate }) => {
   };
 
   return (
-    <form className="profile-form" onSubmit={handleSubmit}>
+    <div className="update-preferences-container">
       <h2>Your Preferences</h2>
-      <div className="form-group">
-        <label>
-          <input
-            type="checkbox"
-            name="emailNotifications"
-            checked={preferences.emailNotifications}
-            onChange={handleChange}
-          />
-          Email Notifications
-        </label>
-      </div>
-      <div className="form-group">
-        <label>
-          <input
-            type="checkbox"
-            name="promotionalEmails"
-            checked={preferences.promotionalEmails}
-            onChange={handleChange}
-          />
-          Promotional Emails
-        </label>
-      </div>
-      <button type="submit" className="btn">Update Preferences</button>
-    </form>
+      <form className="profile-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              name="emailNotifications"
+              checked={preferences.emailNotifications}
+              onChange={handleChange}
+            />
+            <span>Email Notifications</span>
+          </label>
+        </div>
+        <div className="form-group">
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              name="promotionalEmails"
+              checked={preferences.promotionalEmails}
+              onChange={handleChange}
+            />
+            <span>Promotional Emails</span>
+          </label>
+        </div>
+        <button type="submit" className="btn">Update Preferences</button>
+      </form>
+    </div>
   );
 };
 
