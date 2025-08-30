@@ -10,6 +10,7 @@ import Profile from './Sections/Profile';
 import { auth, db, doc, getDoc, onAuthStateChanged, signOut } from './Components/firebase'; // Import Firebase
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import './Components/test'; // Test Firestore connection
 
 
 function AppContent() {
