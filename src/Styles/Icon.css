@@ -1,0 +1,65 @@
+.icon-container {
+  background: linear-gradient(135deg, #ffd6e0, #ffe6f0);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 4rem 2rem;
+  justify-content: center;
+}
+
+.icon-container .icons {
+  background: #fff;
+  border-radius: 1.5rem;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1 1 250px;
+  max-width: 320px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.icon-container .icons:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.icon-container .icons svg {
+  color: #ff4da6;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.icon-container .icons:hover svg {
+  transform: scale(1.2);
+  color: #e60073;
+}
+
+.icon-container .info h3 {
+  color: #222;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.icon-container .info span {
+  color: #666;
+  font-size: 1.3rem;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .icon-container {
+    padding: 3rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .icon-container .icons {
+    flex: 1 1 100%;
+    justify-content: flex-start;
+  }
+}

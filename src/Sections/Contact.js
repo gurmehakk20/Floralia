@@ -1,5 +1,5 @@
 import React from 'react'
-import './Contact.css'
+import '../Styles/Contact.css'
 
 const Contact = () => {
   return (
@@ -19,7 +19,7 @@ const Contact = () => {
             </form>
 
             <div class="image">
-                <img src="../contact.jpg" alt=""/>
+                <img src="./assets/contact.jpg" alt=""/>
             </div>
 
 

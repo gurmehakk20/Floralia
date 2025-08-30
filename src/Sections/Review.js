@@ -1,5 +1,5 @@
 import React from 'react'
-import './Review.css'
+import '../Styles/Review.css'
 import { FaStar } from "react-icons/fa";
 import { FaQuoteRight } from "react-icons/fa";
 
@@ -24,7 +24,7 @@ const review = () => {
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sunt a mollitia, eveniet culpa ea maiores sequi itaque ab repellat doloribus illum iusto veniam ipsa eos atque animi quos facere.</p>
                 <div class="user">
-                    <img src="../cust/img-1.jpeg" alt=""/>
+                    <img src="./cust/img-1.jpeg" alt=""/>
                     <div class="user-info">
                         <h3>john deo</h3>
                         <span>happy customer</span>
@@ -45,7 +45,7 @@ const review = () => {
                     
                 </p>
                 <div class="user">
-                    <img src="../cust/img-2.jpg" alt=""/>
+                    <img src="./cust/img-2.jpg" alt=""/>
                     <div class="user-info">
                         <h3> Hayley </h3>
                         <span>happy customer</span>
@@ -64,7 +64,7 @@ const review = () => {
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sunt a mollitia, eveniet culpa ea maiores sequi itaque ab repellat doloribus illum iusto veniam ipsa eos atque animi quos facere.</p>
                 <div class="user">
-                    <img src="../cust/img-3.webp" alt=""/>
+                    <img src="./cust/img-3.webp" alt=""/>
                     <div class="user-info">
                         <h3>Alexandre</h3>
                         <span>happy customer</span>

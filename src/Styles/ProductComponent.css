@@ -1,0 +1,197 @@
+/* 🎀 Product Card Styles - Pink Luxury Theme 🎀 */
+.product-card {
+  background: linear-gradient(145deg, #fff0f6, #ffe4ec);
+  width: 100%;  /* Full width to fit grid column */
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 6px 15px rgba(255, 105, 180, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(255, 105, 180, 0.35);
+}
+
+/* Discount Badge */
+.product-card .discount {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #ff69b4;
+  color: white;
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(255, 20, 147, 0.3);
+}
+
+/* Image Section (CONSISTENT SIZE FIX) */
+.product-card .image {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%; 
+  height: 240px; /* uniform fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: #fff; */
+}
+
+.product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* keeps images consistent */
+  border-radius: 16px;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.07);
+}
+
+/* ❤️ Wishlist Indicator */
+.liked-indicator {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: #ff4081;
+  font-size: 22px;
+  animation: popIn 0.3s ease forwards;
+}
+
+/* Floating messages */
+.floating-msg {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  animation: floatUp 1.5s forwards;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.floating-msg.like {
+  background: #ffe0e9;
+  color: #d6336c;
+}
+
+.floating-msg.cart {
+  background: #e3ffe3;
+  color: #1e7e34;
+}
+
+/* Icons Section */
+.product-card .icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+  position: relative;
+}
+
+/* Buttons */
+.heart-btn,
+.cart-btn,
+.share-btn {
+  background: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #ff4081;
+  box-shadow: 0 4px 10px rgba(255, 20, 147, 0.15);
+}
+
+.heart-btn:hover,
+.cart-btn:hover,
+.share-btn:hover {
+  background: #ff4081;
+  color: white;
+  transform: scale(1.1);
+}
+
+.heart-btn.active {
+  background: #ff69b4;
+  color: white;
+}
+
+/* Heart Pulse Animation */
+.heart-pulse {
+  animation: heartPulse 0.6s ease;
+}
+
+/* Cart Added Animation */
+.added-to-cart {
+  animation: bounce 0.6s ease;
+  background: #ff69b4 !important;
+  color: white !important;
+}
+
+/* Product Content */
+.product-card .content {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.product-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ff2e93;
+}
+
+.product-card .price {
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-card .price span {
+  font-size: 14px;
+  text-decoration: line-through;
+  color: #999;
+  margin-left: 6px;
+}
+
+/* 🌸 Animations */
+@keyframes heartPulse {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.3); }
+  50% { transform: scale(0.9); }
+  75% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(1.2); }
+  50% { transform: scale(0.9); }
+  70% { transform: scale(1.05); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes floatUp {
+  0% { opacity: 0; transform: translate(-50%, 10px); }
+  20% { opacity: 1; transform: translate(-50%, 0); }
+  70% { opacity: 1; transform: translate(-50%, -10px); }
+  100% { opacity: 0; transform: translate(-50%, -20px); }
+}

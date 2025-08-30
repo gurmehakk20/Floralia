@@ -1,0 +1,27 @@
+/* 🎀 Products.css 🎀 */
+.products {
+    padding: 4rem 2rem;
+    /* background: linear-gradient(180deg, #fff0f6 0%, #ffe4ec 100%); */
+  }
+  
+  /* .products .heading {
+    text-align: center;
+    font-size: 2rem;
+    color: #ff2e93;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  } */
+  
+  .products .heading span {
+    color: #ff69b4;
+  }
+  
+  .products .box-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  justify-items: center;
+}
+
+  

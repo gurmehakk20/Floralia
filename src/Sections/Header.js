@@ -1,8 +1,9 @@
 import React from 'react'
-import './Header.css'
+import '../Styles/Header.css'
 import { FaHeart } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -11,7 +12,7 @@ const Header = () => {
         
         <a href="#" className="logo">floralia <span>.</span></a>
         <nav className="navbar">
-          <a href="#home">HOME</a>
+          <a href="#home" className="active">HOME</a>
           <a href="#about">ABOUT</a>
           <a href="#products">PRODUCTS</a>
           <a href="#review">REVIEW</a>
@@ -19,9 +20,9 @@ const Header = () => {
         </nav>
 
         <div className="icons">
-          <a><FaHeart /></a>
-          <a><FaCartShopping /></a>
-          <a><FaUser /></a>
+          <Link to="/liked"><FaHeart /></Link>
+          <Link to="/cart"><FaCartShopping /></Link>
+          <a href="#"><FaUser /></a>
         </div>
       </header>
       

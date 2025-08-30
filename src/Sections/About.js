@@ -1,5 +1,5 @@
 import React from 'react'
-import './About.css'
+import '../Styles/About.css'
 
 const About = () => {
   return (
@@ -10,7 +10,7 @@ const About = () => {
         </h1>
         <div className="row">
           <div className="video-container">
-            <video src="../about-video.mp4" loop autoPlay muted></video>
+            <video src="./assets/about-video.mp4" loop autoPlay muted></video>
             <h3>best flower sellers</h3>
           </div>
           <div className="content">

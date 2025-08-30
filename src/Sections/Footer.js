@@ -1,5 +1,5 @@
 import React from 'react'
-import './Footer.css'
+import '../Styles/Footer.css'
 
 const Footer = () => {
   return (
@@ -37,7 +37,7 @@ const Footer = () => {
                 <a href="#">+123-456-7890</a>
                 <a href="#">example@gmail.com</a>
                 <a href="#">Chandigarh, India - 160017</a>
-                <img src="../payment.png" alt=""/>
+                <img src="./assets/payment.png" alt=""/>
             </div>
 
         </div>

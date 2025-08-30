@@ -1,5 +1,5 @@
 import React from 'react'
-import './Icon.css'
+import '../Styles/Icon.css'
 import { FaCartArrowDown } from "react-icons/fa";
 import { TbMoneybag } from "react-icons/tb";
 import { CiGift } from "react-icons/ci";

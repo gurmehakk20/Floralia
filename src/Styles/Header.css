@@ -28,6 +28,7 @@ header .navbar a {
     color: #666;
 }
 
+header .navbar .active,
 header .navbar a:hover {
     color: var(--pink);
 }
