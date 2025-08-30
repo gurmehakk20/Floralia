@@ -1,0 +1,194 @@
+.checkout {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  padding-top: 100px; /* add extra top padding to clear header */
+  box-shadow: 0 .5rem 1.5rem rgba(0,0,0,0.1);
+  border-radius: .5rem;
+  background: #fff;
+}
+
+
+.checkout .heading {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.checkout-step {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.checkout-step input,
+.checkout-step select {
+  padding: 1rem;
+  font-size: 1.4rem;
+  border: .1rem solid rgba(0,0,0,0.2);
+  border-radius: .5rem;
+  outline: none;
+}
+
+.checkout-step input:focus,
+.checkout-step select:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 5px rgba(255, 0, 100, 0.3);
+}
+
+.checkout-step h3 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.checkout-step p {
+  font-size: 1.6rem;
+  color: #555;
+}
+
+.checkout-step .disabled-btn {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.checkout-step h2 {
+  font-size: 2rem;
+  color: var(--pink);
+  margin-top: 1rem;
+}
+
+.checkout-step .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.checkout-step .btn {
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  border-radius: .5rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-step .btn:hover {
+  opacity: 0.9;
+}
+
+.checkout-step .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.order-summary {
+  margin-bottom: 2rem;
+}
+
+.order-summary p {
+  font-size: 1.5rem;
+  color: #555;
+}
+
+.order-summary h2 {
+  font-size: 2rem;
+  color: var(--pink);
+  margin-top: 1rem;
+}
+.thank-you {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 2rem;
+}
+
+.thank-you h1 {
+  font-size: 3rem;
+  color: var(--pink);
+  margin-bottom: 1rem;
+}
+
+.thank-you p {
+  font-size: 1.8rem;
+  color: #555;
+}
+.thank-you {
+  position: relative;
+  overflow: hidden;
+  min-height: 250px;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.confetti {
+  pointer-events: none;
+  position: absolute;
+  left: 0; top: 0; width: 100%; height: 100%;
+  z-index: 1;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 18px;
+  background: hsl(calc(360 * var(--i) / 30), 80%, 70%);
+  top: -20px;
+  left: calc(3% * var(--i));
+  opacity: 0.8;
+  border-radius: 3px;
+  animation: confetti-fall 2s linear forwards;
+  transform: rotate(calc(12deg * var(--i)));
+}
+.confetti-piece:nth-child(n) { --i: 1; }
+.confetti-piece:nth-child(2) { --i: 2; }
+.confetti-piece:nth-child(3) { --i: 3; }
+.confetti-piece:nth-child(4) { --i: 4; }
+.confetti-piece:nth-child(5) { --i: 5; }
+.confetti-piece:nth-child(6) { --i: 6; }
+.confetti-piece:nth-child(7) { --i: 7; }
+.confetti-piece:nth-child(8) { --i: 8; }
+.confetti-piece:nth-child(9) { --i: 9; }
+.confetti-piece:nth-child(10) { --i: 10; }
+.confetti-piece:nth-child(11) { --i: 11; }
+.confetti-piece:nth-child(12) { --i: 12; }
+.confetti-piece:nth-child(13) { --i: 13; }
+.confetti-piece:nth-child(14) { --i: 14; }
+.confetti-piece:nth-child(15) { --i: 15; }
+.confetti-piece:nth-child(16) { --i: 16; }
+.confetti-piece:nth-child(17) { --i: 17; }
+.confetti-piece:nth-child(18) { --i: 18; }
+.confetti-piece:nth-child(19) { --i: 19; }
+.confetti-piece:nth-child(20) { --i: 20; }
+.confetti-piece:nth-child(21) { --i: 21; }
+.confetti-piece:nth-child(22) { --i: 22; }
+.confetti-piece:nth-child(23) { --i: 23; }
+.confetti-piece:nth-child(24) { --i: 24; }
+.confetti-piece:nth-child(25) { --i: 25; }
+.confetti-piece:nth-child(26) { --i: 26; }
+.confetti-piece:nth-child(27) { --i: 27; }
+.confetti-piece:nth-child(28) { --i: 28; }
+.confetti-piece:nth-child(29) { --i: 29; }
+.confetti-piece:nth-child(30) { --i: 30; }
+
+@keyframes confetti-fall {
+  0% {
+    top: -20px;
+    opacity: 0.8;
+    transform: rotate(0deg) scale(1);
+  }
+  80% {
+    opacity: 0.8;
+    transform: rotate(360deg) scale(1.1);
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+    transform: rotate(720deg) scale(0.8);
+  }
+}

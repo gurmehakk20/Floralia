@@ -1,5 +1,6 @@
 import React from "react";
 import "../Styles/Home.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -12,9 +13,12 @@ const Home = () => {
           bring joy and elegance to every moment. Hand-picked and delivered with
           love.
         </p>
-        <a href="#shop" className="btn">
+        <Link to="/products" className="btn">
           Shop Now
-        </a>
+        </Link>
+        <Link to="/products" className="btn btn-outline" style={{marginLeft: '10px'}}>
+          View All Products
+        </Link>
       </div>
     </section>
   );

@@ -1,7 +1,8 @@
 /* 🎀 Product Card Styles - Pink Luxury Theme 🎀 */
 .product-card {
   background: linear-gradient(145deg, #fff0f6, #ffe4ec);
-  width: 100%;  /* Full width to fit grid column */
+  width: 100%; /* or auto, or max-width */
+  /* max-width: 100%; */
   border-radius: 20px;
   padding: 16px;
   box-shadow: 0 6px 15px rgba(255, 105, 180, 0.25);

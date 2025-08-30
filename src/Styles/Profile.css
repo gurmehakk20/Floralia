@@ -1,37 +1,118 @@
 .profile {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 2rem 9%;
-  background: #eee;
+  background: #f9f9f9;
+  scroll-margin-top: 80px; /* Adjust to your header's height */
+  padding-top: 80px; /* Adjust to your header's height */
 }
 
 .profile .heading {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #333;
 }
 
-.profile-details {
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tabs button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: .5rem;
+  background: #eee;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.tabs button.active {
+  background: var(--pink);
+  color: #fff;
+}
+
+/* Tab Content */
+.tab-content {
   background: #fff;
+  padding: 2rem;
   border-radius: .5rem;
   box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
-  border: .1rem solid rgba(0,0,0,.1);
-  padding: 2rem 2.5rem;
-  width: 40rem;
-  text-align: center;
+  max-width: 50rem;
+  margin: auto;
 }
 
-.profile-details p {
-  font-size: 1.8rem;
+.profile-info-display {
+  padding: 1rem;
+  line-height: 1.8;
+}
+
+.profile-info-display p {
+  margin-bottom: 0.5rem;
+}
+
+.profile-info-display strong {
   color: #333;
-  margin-bottom: 1rem;
 }
 
-.profile-details p strong {
-  color: var(--pink);
+.profile-info-display h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: #333;
 }
 
-.profile-details .btn {
+/* Form Styling */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.form-group input {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: .5rem;
+}
+
+.profile .btn {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: .5rem;
+  background: var(--pink);
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1.1rem;
+}
+
+.profile .btn:hover {
+  background: #ff5f7a;
+}
+
+.logout {
   margin-top: 2rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background: #6c757d !important;
+}
+
+.logout:hover {
+  background: #5a6268 !important;
 }

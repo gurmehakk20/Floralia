@@ -1,12 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import '../Styles/Products.css';
-import '../Styles/ProductComponent.css'; // Import the new CSS file
-// import { FaHeart, FaShare } from 'react-icons/fa';
-import productsData from '../Components/productsData.json'; 
+import '../Styles/ProductComponent.css';
+import productsData from '../Components/productsData.json';
 import ProductComponent from '../Components/ProductComponent';
+import '../Styles/AllProductsPage.css';
 
-const Products = ({ onLike, likedProducts, onAddToCart }) => {
+const AllProductsPage = ({ onLike, likedProducts, onAddToCart }) => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const handleLike = (product) => {
     onLike(product);
@@ -17,23 +19,23 @@ const Products = ({ onLike, likedProducts, onAddToCart }) => {
   };
 
   const handleShare = async (product) => {
+    const productUrl = `${window.location.origin}/product/${product.id}`;
+    const shareText = `Buy ${product.name} for your loved ones for just $${product.price} — only at Floralia!`;
+
     if (navigator.share) {
       try {
         await navigator.share({
           title: product.name,
-          text: `Check out this product: ${product.name}`,
-          url: window.location.href, // You might want a more specific product URL here
+          text: shareText,
+          url: productUrl,
         });
-        console.log('Product shared successfully');
       } catch (error) {
         console.error('Error sharing product:', error);
       }
     } else {
-      // Fallback for browsers that do not support the Web Share API
       try {
-        await navigator.clipboard.writeText(`${window.location.href}#products`); // Fallback: copy link to clipboard
+        await navigator.clipboard.writeText(`${shareText} ${productUrl}`);
         alert('Product link copied to clipboard!');
-        console.log('Product link copied to clipboard');
       } catch (error) {
         console.error('Error copying to clipboard:', error);
         alert('Could not copy product link.');
@@ -42,14 +44,13 @@ const Products = ({ onLike, likedProducts, onAddToCart }) => {
   };
 
   return (
-    <div>
-      <section className="products" id="products">
-        <h1 className="heading">
-          latest <span>products</span>
-        </h1>
-        <div className="view-all-container">
-          <Link to="/products" className="view-all-btn">View All Products</Link>
-        </div>
+    <div className="products-page">
+      <section className="products-hero">
+        <h1 className="heading">Our <span>Products</span></h1>
+        <p>Discover our beautiful collection of plants and flowers</p>
+      </section>
+      
+      <section className="products-container">
         <div className="box-container">
           {productsData.map((product, index) => (
             <ProductComponent 
@@ -66,4 +67,4 @@ const Products = ({ onLike, likedProducts, onAddToCart }) => {
   );
 };
 
-export default Products;
+export default AllProductsPage;

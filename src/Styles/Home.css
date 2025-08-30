@@ -28,5 +28,28 @@
     color: #999;
     padding: 1rem 0;
     line-height: 1.5;
+}
 
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  border-radius: 5rem;
+  background: var(--pink);
+  color: #fff;
+  padding: .9rem 3.5rem;
+  cursor: pointer;
+  font-size: 1.7rem;
+  text-decoration: none;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--pink);
+  border: 2px solid var(--pink);
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: var(--pink);
+  color: #fff;
 }

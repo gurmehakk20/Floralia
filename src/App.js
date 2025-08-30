@@ -7,11 +7,18 @@ import Cart from './Sections/Cart';
 import Login from './Sections/Login';
 import Signup from './Sections/Signup';
 import Profile from './Sections/Profile';
-import { auth, db, doc, getDoc, onAuthStateChanged, signOut } from './Components/firebase'; // Import Firebase
+import AllProductsPage from './Sections/AllProductsPage';
+import { auth, db, doc, getDoc, onAuthStateChanged, signOut, setDoc } from './Components/firebase'; // Import Firebase
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import './Components/test'; // Test Firestore connection
 
+import Checkout from './Sections/Checkout';
+import ThankYou from './Sections/ThankYou';
+import ProductPage from './Components/ProductPage';
+import UpdateProfile from './Components/UpdateProfile';
+import UpdateAddress from './Components/UpdateAddress';
+import UpdatePaymentMethods from './Components/UpdatePaymentMethods';
+import UpdatePreferences from './Components/UpdatePreferences';
 
 function AppContent() {
   const location = useLocation();
@@ -54,6 +61,17 @@ function AppContent() {
     });
   };
 
+const handleUpdateQuantity = (name, newQuantity) => {
+  setCartItems(prevItems =>
+    prevItems.map(item =>
+      item.name === name
+        ? { ...item, quantity: Math.max(newQuantity, 1) }
+        : item
+    )
+  );
+};
+
+
   const handleAddToCart = (product) => {
     setCartItems(prevCartItems => {
       const existingItem = prevCartItems.find(item => item.name === product.name);
@@ -94,6 +112,99 @@ function AppContent() {
     }
   };
 
+  const handleUpdateProfile = async (updatedData) => {
+    if (user && user.uid) {
+      const userRef = doc(db, "users", user.uid);
+      try {
+        await setDoc(userRef, {
+          firstName: updatedData.firstName,
+          lastName: updatedData.lastName,
+          dob: updatedData.dob,
+          phone: updatedData.phone,
+          address: {
+            street: updatedData.street,
+            city: updatedData.city,
+            state: updatedData.state,
+            zip: updatedData.zip,
+            country: updatedData.country
+          },
+          // Preserve existing fields not updated by this form
+          email: user.email, // Assuming email is not updated via profile form
+          // ... other fields you want to preserve
+        }, { merge: true }); // Use merge: true to update only specified fields
+        
+        setUser(prevUser => ({
+          ...prevUser,
+          firstName: updatedData.firstName,
+          lastName: updatedData.lastName,
+          dob: updatedData.dob,
+          phone: updatedData.phone,
+          address: {
+            street: updatedData.street,
+            city: updatedData.city,
+            state: updatedData.state,
+            zip: updatedData.zip,
+            country: updatedData.country
+          }
+        }));
+        alert("Profile updated successfully!");
+      } catch (error) {
+        console.error("Error updating profile:", error);
+        alert("Failed to update profile.");
+      }
+    } else {
+      alert("No user logged in to update profile.");
+    }
+  };
+
+  const handleUpdateAddresses = async (updatedAddresses) => {
+    if (user && user.uid) {
+      const userRef = doc(db, "users", user.uid);
+      try {
+        await setDoc(userRef, { addresses: updatedAddresses }, { merge: true });
+        setUser(prevUser => ({ ...prevUser, addresses: updatedAddresses }));
+        alert("Addresses updated successfully!");
+      } catch (error) {
+        console.error("Error updating addresses:", error);
+        alert("Failed to update addresses.");
+      }
+    } else {
+      alert("No user logged in to update addresses.");
+    }
+  };
+
+  const handleUpdatePaymentMethods = async (updatedPaymentMethods) => {
+    if (user && user.uid) {
+      const userRef = doc(db, "users", user.uid);
+      try {
+        await setDoc(userRef, { paymentMethods: updatedPaymentMethods }, { merge: true });
+        setUser(prevUser => ({ ...prevUser, paymentMethods: updatedPaymentMethods }));
+        alert("Payment methods updated successfully!");
+      } catch (error) {
+        console.error("Error updating payment methods:", error);
+        alert("Failed to update payment methods.");
+      }
+    } else {
+      alert("No user logged in to update payment methods.");
+    }
+  };
+
+  const handleUpdatePreferences = async (updatedPreferences) => {
+    if (user && user.uid) {
+      const userRef = doc(db, "users", user.uid);
+      try {
+        await setDoc(userRef, { preferences: updatedPreferences }, { merge: true });
+        setUser(prevUser => ({ ...prevUser, preferences: updatedPreferences }));
+        alert("Preferences updated successfully!");
+      } catch (error) {
+        console.error("Error updating preferences:", error);
+        alert("Failed to update preferences.");
+      }
+    } else {
+      alert("No user logged in to update preferences.");
+    }
+  };
+
   if (loadingUser) {
     return <div>Loading user...</div>; // Or a spinner
   }
@@ -102,20 +213,42 @@ function AppContent() {
     <>
       <Header user={user} />
       <Routes>
-        <Route 
-          path="/*" 
+        <Route path="/*" 
           element={
             <MainContent onLike={handleLike} likedProducts={likedProducts} onAddToCart={handleAddToCart} />
           }
         />
-        <Route path="/liked" element={<Liked likedProducts={likedProducts} onAddToCart={handleAddToCart} />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />} />
+        <Route path="/liked" element={<Liked likedProducts={likedProducts} onAddToCart={handleAddToCart} onLike={handleLike} />} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} onUpdateQuantity={handleUpdateQuantity} /> } />
+        <Route path="/products" element={<AllProductsPage onLike={handleLike} likedProducts={likedProducts} onAddToCart={handleAddToCart} />} />
+        
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/thank-you" element={<ThankYou />} />
+
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
         <Route 
           path="/profile" 
-          element={user ? <Profile user={user} onLogout={handleLogout} /> : <Login onLogin={handleLogin} />} 
+          element={user ? <Profile user={user} onLogout={handleLogout} onUpdate={handleUpdateProfile} /> : <Login onLogin={handleLogin} />} 
         />
+        <Route 
+          path="/profile/edit" 
+          element={user ? <UpdateProfile user={user} onUpdate={handleUpdateProfile} /> : <Login onLogin={handleLogin} />} 
+        />
+        <Route 
+          path="/profile/addresses" 
+          element={user ? <UpdateAddress user={user} onUpdateAddresses={handleUpdateAddresses} navigate={navigate} /> : <Login onLogin={handleLogin} />} 
+        />
+        <Route 
+          path="/profile/payments" 
+          element={user ? <UpdatePaymentMethods user={user} onUpdatePaymentMethods={handleUpdatePaymentMethods} navigate={navigate} /> : <Login onLogin={handleLogin} />} 
+        />
+        <Route 
+          path="/profile/preferences" 
+          element={user ? <UpdatePreferences user={user} onUpdatePreferences={handleUpdatePreferences} navigate={navigate} /> : <Login onLogin={handleLogin} />} 
+        />
+        <Route path="/product/:id" element={<ProductPage onLike={handleLike} likedProducts={likedProducts} onAddToCart={handleAddToCart} />} />
+
       </Routes>
     </>
   );

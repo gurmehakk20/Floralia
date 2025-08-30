@@ -17,7 +17,29 @@
     color: #ff69b4;
   }
   
-  .products .box-container {
+  .products .view-all-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.products .view-all-btn {
+  display: inline-block;
+  padding: 0.8rem 2.5rem;
+  border-radius: 5rem;
+  background: var(--pink);
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.products .view-all-btn:hover {
+  background: #e84393;
+  transform: scale(1.05);
+}
+
+.products .box-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;

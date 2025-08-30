@@ -1,0 +1,40 @@
+.products-page {
+  padding-top: 80px;
+}
+
+.products-hero {
+  text-align: center;
+  padding: 3rem 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('/public/assets/bg5.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+
+
+.products-hero p {
+  font-size: 1.5rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.products-container {
+  padding: 2rem;
+}
+
+.products-container .box-container {
+  display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .products-hero .heading {
+    font-size: 2.5rem;
+  }
+  
+  .products-hero p {
+    font-size: 1.2rem;
+  }
+}
