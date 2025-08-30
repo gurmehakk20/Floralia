@@ -4,21 +4,21 @@ import '../Styles/Contact.css'
 const Contact = () => {
   return (
     <div>
-      <section class="contact" id="contact">
+      <section className="contact" id="contact">
 
-        <h1 class="heading"><span>contact</span></h1>
+        <h1 className="heading"><span>contact</span></h1>
 
-        <div class="row">
+        <div className="row">
 
             <form action="">
-                <input type="text" placeholder="name" class="box"></input>
-                <input type="email" placeholder="email" class="box"></input>
-                <input type="number" placeholder="number" class="box"></input>
-                <textarea name="" class="box"  placeholder="message" cols="30" rows="10"></textarea>
-                <input type="submit" value="send message" class="btn"></input>
+                <input type="text" placeholder="name" className="box"></input>
+                <input type="email" placeholder="email" className="box"></input>
+                <input type="number" placeholder="number" className="box"></input>
+                <textarea name="" className="box" placeholder="message" cols="30" rows="10"></textarea>
+                <input type="submit" value="send message" className="btn"></input>
             </form>
 
-            <div class="image">
+            <div className="image">
                 <img src="./assets/contact.jpg" alt=""/>
             </div>
 

@@ -1,0 +1,77 @@
+.login,
+.signup {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 9%;
+  background: #eee;
+}
+
+.login .heading,
+.signup .heading {
+  margin-bottom: 3rem;
+}
+
+.login form,
+.signup form {
+  background: #fff;
+  border-radius: .5rem;
+  box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+  border: .1rem solid rgba(0,0,0,.1);
+  padding: 2rem 2.5rem;
+  width: 40rem;
+  text-align: center;
+}
+
+.login form .box,
+.signup form .box {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.7rem;
+  color: #333;
+  text-transform: none;
+  border: .1rem solid rgba(0,0,0,.1);
+  border-radius: .5rem;
+  margin: .7rem 0;
+}
+
+.login form .btn,
+.signup form .btn {
+  width: 100%;
+}
+
+.login form p,
+.signup form p {
+  font-size: 1.5rem;
+  color: #666;
+  margin-top: 1rem;
+}
+
+.login form p a,
+.signup form p a {
+  color: var(--pink);
+}
+
+.login form p a:hover,
+.signup form p a:hover {
+  text-decoration: underline;
+}
+
+.google-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.7rem;
+  color: #fff;
+  background: #db4437; /* Google red */
+  border: none;
+  border-radius: .5rem;
+  margin: .7rem 0;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.google-btn:hover {
+  background: #c33d2e;
+}

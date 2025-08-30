@@ -1,19 +1,23 @@
-import React from 'react'
-import '../Styles/Home.css'
+import React from "react";
+import "../Styles/Home.css";
 
 const Home = () => {
   return (
-    <div>
-        <section class="home" id = "home">
-        <div class="content">
-            <h3>fresh flowers</h3>
-            <span>natural & beautiful flowers</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis nisi facere mollitia, veniam magni nobis quo velit veritatis numquam ratione!</p>
-            <a href="" class="btn">shop now</a>
-        </div>
+    <section className="home" id="home">
+      <div className="content">
+        <h3>Fresh Flowers</h3>
+        <span>Natural & Beautiful Blooms</span>
+        <p>
+          Discover our curated selection of fresh, vibrant flowers designed to
+          bring joy and elegance to every moment. Hand-picked and delivered with
+          love.
+        </p>
+        <a href="#shop" className="btn">
+          Shop Now
+        </a>
+      </div>
     </section>
-    </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

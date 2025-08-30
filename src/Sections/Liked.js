@@ -1,7 +1,8 @@
 import React from 'react';
-import '../Styles/Liked.css'; // We'll create this CSS file next
+import '../Styles/Liked.css';
+import ProductComponent from '../Components/ProductComponent'; // Import ProductComponent
 
-const Liked = ({ likedProducts }) => {
+const Liked = ({ likedProducts, onAddToCart }) => {
   return (
     <section className="liked" id="liked">
       <h1 className="heading">Your <span>Liked</span> Products</h1>
@@ -10,17 +11,13 @@ const Liked = ({ likedProducts }) => {
           <p>No liked products yet.</p>
         ) : (
           likedProducts.map((product, index) => (
-            <div className="box" key={index}>
-              <div className="image">
-                <img src={product.image} alt={product.name} />
-              </div>
-              <div className="content">
-                <h3>{product.name}</h3>
-                <div className="price">
-                  ${product.price}
-                </div>
-              </div>
-            </div>
+            <ProductComponent 
+              key={index} 
+              product={product} 
+              onAddToCart={onAddToCart} 
+              // onLike is not passed here as it's a liked page
+              onShare={() => { /* Implement share logic if needed on liked page */ }} 
+            />
           ))
         )}
       </div>

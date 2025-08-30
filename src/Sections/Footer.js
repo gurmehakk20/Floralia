@@ -4,11 +4,11 @@ import '../Styles/Footer.css'
 const Footer = () => {
   return (
     <div>
-      <section class="footer">
+      <section className="footer">
 
-        <div class="box-container">
+        <div className="box-container">
 
-            <div class="box">
+            <div className="box">
                 <h3>quick lines</h3>
                 <a href="#">home</a>
                 <a href="#">about</a>
@@ -17,14 +17,14 @@ const Footer = () => {
                 <a href="#">contact</a>
             </div>
 
-            <div class="box">
+            <div className="box">
                 <h3>quick lines</h3>
                 <a href="#">my account</a>
                 <a href="#">my order</a>
                 <a href="#">my favorites</a>
             </div>
 
-            <div class="box">
+            <div className="box">
                 <h3>locations</h3>
                 <a href="#">India</a>
                 <a href="#">USA</a>
@@ -32,7 +32,7 @@ const Footer = () => {
                 <a href="#">japan</a>
             </div>
 
-            <div class="box">
+            <div className="box">
                 <h3>contact info</h3>
                 <a href="#">+123-456-7890</a>
                 <a href="#">example@gmail.com</a>
