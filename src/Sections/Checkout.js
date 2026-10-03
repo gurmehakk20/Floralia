@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { db } from "../Components/firebase";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { auth, db } from "../Components/firebase";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import '../Styles/Checkout.css';
 import { formatPrice } from "../Components/formatPrice";
@@ -40,11 +40,15 @@ const Checkout = () => {
 
   const [payment, setPayment] = useState("cod");
   const [loading, setLoading] = useState(false);
+  const [orderError, setOrderError] = useState(null);
 
   const handlePlaceOrder = async () => {
+    setOrderError(null);
     try {
       setLoading(true);
       await addDoc(collection(db, "orders"), {
+        // Ties the order to the signed-in account so Firestore rules can check ownership.
+        userId: auth.currentUser ? auth.currentUser.uid : null,
         customer,
         address,
         payment,
@@ -57,6 +61,8 @@ const Checkout = () => {
       navigate("/thank-you");
     } catch (error) {
       console.error("Error placing order:", error);
+      // Firestore rejects unauthenticated writes as "permission-denied".
+      setOrderError(error.code === "permission-denied" && !auth.currentUser ? "login" : "failed");
       setLoading(false);
     }
   };
@@ -172,6 +178,16 @@ const Checkout = () => {
               {loading ? "Placing Order..." : "Confirm Order"}
             </button>
           </div>
+
+          {orderError && (
+            <p className="order-error" role="alert">
+              {orderError === "login" ? (
+                <>Please <Link to="/login">log in</Link> to place your order.</>
+              ) : (
+                "We couldn't place your order. Please try again in a moment."
+              )}
+            </p>
+          )}
         </div>
       )}
     </section>

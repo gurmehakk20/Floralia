@@ -32,14 +32,18 @@ function AppContent() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        // User is signed in, fetch profile data from Firestore
-        const userRef = doc(db, "users", currentUser.uid);
-        const docSnap = await getDoc(userRef);
-        if (docSnap.exists()) {
-          setUser(docSnap.data());
-        } else {
-          // Should ideally not happen if signup/login creates the doc
-          setUser({ uid: currentUser.uid, email: currentUser.email, name: currentUser.displayName || currentUser.email.split('@')[0] });
+        const basicProfile = { uid: currentUser.uid, email: currentUser.email, name: currentUser.displayName || currentUser.email.split('@')[0] };
+        try {
+          // User is signed in, fetch profile data from Firestore
+          const userRef = doc(db, "users", currentUser.uid);
+          const docSnap = await getDoc(userRef);
+          // Should ideally always exist if signup/login creates the doc
+          setUser(docSnap.exists() ? docSnap.data() : basicProfile);
+        } catch (error) {
+          // e.g. Firestore rules deny the read — stay signed in with the basic auth profile
+          // instead of crashing (and never leaving the loading screen).
+          console.error("Error loading user profile:", error);
+          setUser(basicProfile);
         }
       } else {
         // User is signed out

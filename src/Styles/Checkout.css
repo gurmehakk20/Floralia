@@ -88,6 +88,21 @@
   cursor: not-allowed;
 }
 
+.checkout-step .order-error {
+  padding: 1.2rem 1.6rem;
+  font-size: 1.5rem;
+  color: var(--rose-dark);
+  background: var(--blush);
+  border: 1px solid var(--rose-tint);
+  border-radius: var(--radius-sm);
+}
+
+.checkout-step .order-error a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: .2rem;
+}
+
 .order-summary {
   margin-bottom: 2rem;
 }
