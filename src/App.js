@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 // Global styles load first so component styles can build on them.
 import './App.css';
 import Header from './Sections/Header';
@@ -22,7 +22,6 @@ import UpdatePaymentMethods from './Components/UpdatePaymentMethods';
 import UpdatePreferences from './Components/UpdatePreferences';
 
 function AppContent() {
-  const location = useLocation();
   const navigate = useNavigate();
   const [likedProducts, setLikedProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
