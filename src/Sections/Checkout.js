@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../Components/firebase";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import '../Styles/Checkout.css';
+import { formatPrice } from "../Components/formatPrice";
 
 
 const Checkout = () => {
@@ -147,10 +148,10 @@ const Checkout = () => {
           <h3>Order Summary</h3>
           {cartItems.map((item, i) => (
             <p key={i}>
-              {item.name} x {item.quantity} = ${item.price * item.quantity}
+              {item.name} x {item.quantity} = {formatPrice(item.price * item.quantity)}
             </p>
           ))}
-          <h2>Total: ${total}</h2>
+          <h2>Total: {formatPrice(total)}</h2>
 
           <select
             value={payment}

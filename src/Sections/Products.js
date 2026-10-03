@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../Styles/Products.css';
-import '../Styles/ProductComponent.css'; // Import the new CSS file
-// import { FaHeart, FaShare } from 'react-icons/fa';
-import productsData from '../Components/productsData.json'; 
+import '../Styles/ProductComponent.css';
+import productsData from '../Components/productsData.json';
 import ProductComponent from '../Components/ProductComponent';
 
-const Products = ({ onLike, likedProducts, onAddToCart }) => {
+// The home page shows a curated selection; the full range lives on /products.
+const FEATURED_COUNT = 6;
+
+const Products = ({ onLike, likedProducts = [], onAddToCart }) => {
 
   const handleLike = (product) => {
     onLike(product);
@@ -42,27 +44,33 @@ const Products = ({ onLike, likedProducts, onAddToCart }) => {
   };
 
   return (
-    <div>
-      <section className="products" id="products">
-        <h1 className="heading">
-          latest <span>products</span>
-        </h1>
-        <div className="view-all-container">
-          <Link to="/products" className="view-all-btn">View All Products</Link>
+    <section className="products" id="products" aria-labelledby="products-title">
+      <div className="container">
+        <div className="section-head section-head--split">
+          <div>
+            <p className="eyebrow">The collection</p>
+            <h2 id="products-title" className="section-title">Latest Products</h2>
+            <p className="section-sub">Freshly picked favourites</p>
+          </div>
+          <Link to="/products" className="link-arrow">
+            View All Products <span className="btn-arrow" aria-hidden="true">→</span>
+          </Link>
         </div>
-        <div className="box-container">
-          {productsData.map((product, index) => (
-            <ProductComponent 
-              key={index} 
-              product={product} 
-              onLike={handleLike} 
-              onAddToCart={handleAddToCart} 
-              onShare={handleShare} 
+
+        <div className="product-grid">
+          {productsData.slice(0, FEATURED_COUNT).map((product) => (
+            <ProductComponent
+              key={product.id}
+              product={product}
+              liked={likedProducts.some((item) => item.name === product.name)}
+              onLike={handleLike}
+              onAddToCart={handleAddToCart}
+              onShare={handleShare}
             />
           ))}
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

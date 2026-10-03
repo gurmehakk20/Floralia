@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+// Global styles load first so component styles can build on them.
+import './App.css';
 import Header from './Sections/Header';
 import MainContent from './Sections/MainContent';
 import Liked from './Sections/Liked';
@@ -9,7 +11,6 @@ import Signup from './Sections/Signup';
 import Profile from './Sections/Profile';
 import AllProductsPage from './Sections/AllProductsPage';
 import { auth, db, doc, getDoc, onAuthStateChanged, signOut, setDoc } from './Components/firebase'; // Import Firebase
-import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import Checkout from './Sections/Checkout';
@@ -208,12 +209,15 @@ const handleUpdateQuantity = (name, newQuantity) => {
   };
 
   if (loadingUser) {
-    return <div>Loading user...</div>; // Or a spinner
+    return <div className="app-loading" role="status">Loading…</div>;
   }
+
+  const cartCount = cartItems.reduce((count, item) => count + item.quantity, 0);
 
   return (
     <>
-      <Header user={user} />
+      <Header user={user} cartCount={cartCount} likedCount={likedProducts.length} />
+      <main id="main" tabIndex={-1}>
       <Routes>
         <Route path="/*" 
           element={
@@ -252,6 +256,7 @@ const handleUpdateQuantity = (name, newQuantity) => {
         <Route path="/product/:id" element={<ProductPage onLike={handleLike} likedProducts={likedProducts} onAddToCart={handleAddToCart} />} />
 
       </Routes>
+      </main>
     </>
   );
 }

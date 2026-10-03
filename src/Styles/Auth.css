@@ -5,53 +5,64 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem 9%;
-  background: #eee;
+  padding: calc(var(--header-h) + 4rem) var(--gutter) 6.4rem;
+  background: var(--cream);
 }
 
 .login .heading,
 .signup .heading {
-  margin-bottom: 3rem;
+  margin: 0 0 3.2rem;
 }
 
 .login form,
 .signup form {
-  background: #fff;
-  border-radius: .5rem;
-  box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
-  border: .1rem solid rgba(0,0,0,.1);
-  padding: 2rem 2.5rem;
-  width: 40rem;
+  width: 100%;
+  max-width: 42rem;
+  padding: clamp(2.4rem, 4vw, 4rem);
   text-align: center;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
 .login form .box,
 .signup form .box {
   width: 100%;
-  padding: 1rem;
-  font-size: 1.7rem;
-  color: #333;
-  text-transform: none;
-  border: .1rem solid rgba(0,0,0,.1);
-  border-radius: .5rem;
-  margin: .7rem 0;
+  min-height: 4.8rem;
+  margin: .6rem 0;
+  padding: 1.2rem 1.4rem;
+  font-size: 1.6rem;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+
+.login form .box:focus,
+.signup form .box:focus {
+  outline: none;
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(194, 56, 110, .15);
 }
 
 .login form .btn,
 .signup form .btn {
   width: 100%;
+  margin-top: 1.2rem;
 }
 
 .login form p,
 .signup form p {
-  font-size: 1.5rem;
-  color: #666;
-  margin-top: 1rem;
+  margin-top: 1.6rem;
+  font-size: 1.4rem;
+  color: var(--muted);
 }
 
 .login form p a,
 .signup form p a {
-  color: var(--pink);
+  font-weight: 500;
+  color: var(--rose);
 }
 
 .login form p a:hover,
@@ -61,17 +72,20 @@
 
 .google-btn {
   width: 100%;
-  padding: 1rem;
-  font-size: 1.7rem;
-  color: #fff;
-  background: #db4437; /* Google red */
-  border: none;
-  border-radius: .5rem;
-  margin: .7rem 0;
+  min-height: 4.8rem;
+  margin-top: 1rem;
+  padding: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: background 0.3s;
+  transition: border-color .25s var(--ease), background-color .25s var(--ease);
 }
 
 .google-btn:hover {
-  background: #c33d2e;
+  background: var(--cream);
+  border-color: var(--ink);
 }

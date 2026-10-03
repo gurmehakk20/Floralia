@@ -1,5 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../Styles/Cart.css';
+import { formatPrice } from '../Components/formatPrice';
 
 const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
   const navigate = useNavigate();
@@ -17,7 +18,12 @@ const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
       </h1>
       <div className="box-container">
         {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
+          <div className="empty-state">
+            <p>Your cart is empty.</p>
+            <Link to="/products" className="btn">
+              Explore Flowers <span className="btn-arrow" aria-hidden="true">→</span>
+            </Link>
+          </div>
         ) : (
           cartItems.map((item, index) => (
             <div className="box" key={index}>
@@ -26,7 +32,7 @@ const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
               </div>
               <div className="content">
                 <h3>{item.name}</h3>
-                <div className="price">${item.price}</div>
+                <div className="price">{formatPrice(item.price)}</div>
                 
                 {/* Quantity Control */}
                 <div className="quantity-control">
@@ -36,6 +42,7 @@ const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
                       onUpdateQuantity(item.name, item.quantity - 1)
                     }
                     disabled={item.quantity <= 1} // prevent quantity < 1
+                    aria-label={`Decrease ${item.name} quantity`}
                   >
                     -
                   </button>
@@ -45,6 +52,7 @@ const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
                     onClick={() =>
                       onUpdateQuantity(item.name, item.quantity + 1)
                     }
+                    aria-label={`Increase ${item.name} quantity`}
                   >
                     +
                   </button>
@@ -63,7 +71,7 @@ const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
       </div>
       {cartItems.length > 0 && (
         <div className="cart-summary">
-          <h3>Total: ${calculateTotal()}</h3>
+          <h3>Total: {formatPrice(calculateTotal())}</h3>
           <button
             className="btn checkout-btn"
             onClick={() =>
