@@ -75,7 +75,7 @@ const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
           <button
             className="btn checkout-btn"
             onClick={() =>
-              navigate("/checkout", { state: { cartItems, total: calculateTotal() } })
+              navigate("/checkout")
             }
           >
             Checkout

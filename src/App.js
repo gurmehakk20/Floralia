@@ -95,14 +95,20 @@ const handleUpdateQuantity = (name, newQuantity) => {
     );
   };
 
-  const handleLogin = (userData) => {
-    setUser(userData);
-    navigate("/");
+  // Empties the cart once an order has been saved.
+  const handleOrderPlaced = () => {
+    setCartItems([]);
   };
 
-  const handleSignup = (userData) => {
+  // redirectTo lets login/signup return the user to where they started (e.g. checkout).
+  const handleLogin = (userData, redirectTo = "/") => {
     setUser(userData);
-    navigate("/");
+    navigate(redirectTo);
+  };
+
+  const handleSignup = (userData, redirectTo = "/") => {
+    setUser(userData);
+    navigate(redirectTo);
   };
 
   const handleLogout = async () => {
@@ -231,7 +237,7 @@ const handleUpdateQuantity = (name, newQuantity) => {
         <Route path="/cart" element={<Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} onUpdateQuantity={handleUpdateQuantity} /> } />
         <Route path="/products" element={<AllProductsPage onLike={handleLike} likedProducts={likedProducts} onAddToCart={handleAddToCart} />} />
         
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout" element={<Checkout user={user} cartItems={cartItems} onOrderPlaced={handleOrderPlaced} />} />
         <Route path="/thank-you" element={<ThankYou />} />
 
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
