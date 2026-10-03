@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Home from './Home';
+import Occasions from './Occasions';
 import About from './About';
 import Products from './Products';
 import Review from './Review';
@@ -25,6 +26,7 @@ const MainContent = ({ onLike, likedProducts, onAddToCart }) => {
   return (
     <>
       <Home />
+      <Occasions />
       <About />
       <Products onLike={onLike} likedProducts={likedProducts} onAddToCart={onAddToCart} />
       <Review />

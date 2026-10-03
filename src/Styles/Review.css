@@ -1,59 +1,99 @@
-.review .box-container {
+.review {
+    background: var(--blush);
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.6rem, 2.4vw, 3.2rem);
+}
+
+.review-card {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    flex-direction: column;
+    padding: clamp(2.8rem, 3vw, 4rem);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
 }
 
-.review .box-container .box {
-    flex: 1 1 30rem;
-    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
-    border-radius: .5rem;
-    padding: 3rem 2rem;
+.review .stars {
+    display: flex;
+    gap: .3rem;
+    color: var(--gold);
+}
+
+.review .stars svg {
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+.review-card blockquote {
     position: relative;
-    border: .1rem solid rgba(0, 0, 0, .1);
-
+    flex: 1;
+    margin: var(--space-5) 0 var(--space-6);
 }
 
-.review .box-container .box .fa-quote-right {
-    position: absolute;
-    bottom: 3rem;
-    right: 3rem;
-    font-size: 6rem;
-    color: #eee;
+/* Decorative opening quote */
+.review-card blockquote::before {
+    content: "\201C";
+    display: block;
+    height: 3.2rem;
+    font-family: var(--font-display);
+    font-size: 7.2rem;
+    line-height: 1;
+    color: var(--rose);
+    opacity: .35;
 }
 
-.review .box-container .box .stars i {
-    color: var(--pink);
-    font-size: 2rem;
+.review-card blockquote p {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 1.6vw, 2.2rem);
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--ink);
 }
 
-.review .box-container .box p {
-    color: #999;
-    font-size: 1.5rem;
-    line-height: 1.5;
-    padding-top: 2rem;
-}
-
-.review .box-container .box .user {
+.review-author {
     display: flex;
     align-items: center;
-    padding-top: 2rem;
+    gap: 1.4rem;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--line);
 }
 
-.review .box-container .box .user img {
-    height: 6rem;
-    width: 6rem;
+.review-avatar {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 4.6rem;
+    height: 4.6rem;
     border-radius: 50%;
-    object-fit: cover;
-    margin-right: 1rem;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--rose);
+    background: var(--rose-tint);
 }
 
-.review .box-container .box .user h3 {
-    font-size: 2rem;
-    color: #333;
-}
-
-.review .box-container .box .user span {
+.review-name {
+    display: block;
     font-size: 1.5rem;
-    color: #999;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--ink);
+}
+
+.review-detail {
+    display: block;
+    font-size: 1.3rem;
+    color: var(--muted);
+}
+
+@media (max-width: 980px) {
+    .review-grid {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 64rem;
+        margin: 0 auto;
+    }
 }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+// Global styles load first so component styles can build on them.
+import './App.css';
 import Header from './Sections/Header';
 import MainContent from './Sections/MainContent';
 import Liked from './Sections/Liked';
@@ -9,7 +11,6 @@ import Signup from './Sections/Signup';
 import Profile from './Sections/Profile';
 import AllProductsPage from './Sections/AllProductsPage';
 import { auth, db, doc, getDoc, onAuthStateChanged, signOut, setDoc } from './Components/firebase'; // Import Firebase
-import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import Checkout from './Sections/Checkout';
@@ -21,7 +22,6 @@ import UpdatePaymentMethods from './Components/UpdatePaymentMethods';
 import UpdatePreferences from './Components/UpdatePreferences';
 
 function AppContent() {
-  const location = useLocation();
   const navigate = useNavigate();
   const [likedProducts, setLikedProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -31,14 +31,18 @@ function AppContent() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        // User is signed in, fetch profile data from Firestore
-        const userRef = doc(db, "users", currentUser.uid);
-        const docSnap = await getDoc(userRef);
-        if (docSnap.exists()) {
-          setUser(docSnap.data());
-        } else {
-          // Should ideally not happen if signup/login creates the doc
-          setUser({ uid: currentUser.uid, email: currentUser.email, name: currentUser.displayName || currentUser.email.split('@')[0] });
+        const basicProfile = { uid: currentUser.uid, email: currentUser.email, name: currentUser.displayName || currentUser.email.split('@')[0] };
+        try {
+          // User is signed in, fetch profile data from Firestore
+          const userRef = doc(db, "users", currentUser.uid);
+          const docSnap = await getDoc(userRef);
+          // Should ideally always exist if signup/login creates the doc
+          setUser(docSnap.exists() ? docSnap.data() : basicProfile);
+        } catch (error) {
+          // e.g. Firestore rules deny the read — stay signed in with the basic auth profile
+          // instead of crashing (and never leaving the loading screen).
+          console.error("Error loading user profile:", error);
+          setUser(basicProfile);
         }
       } else {
         // User is signed out
@@ -91,14 +95,20 @@ const handleUpdateQuantity = (name, newQuantity) => {
     );
   };
 
-  const handleLogin = (userData) => {
-    setUser(userData);
-    navigate("/");
+  // Empties the cart once an order has been saved.
+  const handleOrderPlaced = () => {
+    setCartItems([]);
   };
 
-  const handleSignup = (userData) => {
+  // redirectTo lets login/signup return the user to where they started (e.g. checkout).
+  const handleLogin = (userData, redirectTo = "/") => {
     setUser(userData);
-    navigate("/");
+    navigate(redirectTo);
+  };
+
+  const handleSignup = (userData, redirectTo = "/") => {
+    setUser(userData);
+    navigate(redirectTo);
   };
 
   const handleLogout = async () => {
@@ -208,12 +218,15 @@ const handleUpdateQuantity = (name, newQuantity) => {
   };
 
   if (loadingUser) {
-    return <div>Loading user...</div>; // Or a spinner
+    return <div className="app-loading" role="status">Loading…</div>;
   }
+
+  const cartCount = cartItems.reduce((count, item) => count + item.quantity, 0);
 
   return (
     <>
-      <Header user={user} />
+      <Header user={user} cartCount={cartCount} likedCount={likedProducts.length} />
+      <main id="main" tabIndex={-1}>
       <Routes>
         <Route path="/*" 
           element={
@@ -224,7 +237,7 @@ const handleUpdateQuantity = (name, newQuantity) => {
         <Route path="/cart" element={<Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} onUpdateQuantity={handleUpdateQuantity} /> } />
         <Route path="/products" element={<AllProductsPage onLike={handleLike} likedProducts={likedProducts} onAddToCart={handleAddToCart} />} />
         
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout" element={<Checkout user={user} cartItems={cartItems} onOrderPlaced={handleOrderPlaced} />} />
         <Route path="/thank-you" element={<ThankYou />} />
 
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
@@ -252,6 +265,7 @@ const handleUpdateQuantity = (name, newQuantity) => {
         <Route path="/product/:id" element={<ProductPage onLike={handleLike} likedProducts={likedProducts} onAddToCart={handleAddToCart} />} />
 
       </Routes>
+      </main>
     </>
   );
 }

@@ -1,55 +1,160 @@
 .home {
-    display: flex;
+    position: relative;
+    overflow: hidden;
+    padding-top: calc(var(--header-h) + clamp(4rem, 4.5vw, 6.4rem));
+    padding-bottom: clamp(5.6rem, 5.5vw, 8rem);
+    background:
+        radial-gradient(56rem 44rem at 82% 38%, rgba(246, 225, 233, .75), transparent 70%),
+        var(--cream);
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
     align-items: center;
-    min-height: 100vh;
-    background: url(../../public/assets/bg5.jpeg) no-repeat;
-    background-size: cover;
-    background-position: center;
+    gap: clamp(4rem, 6vw, 9.6rem);
 }
 
-.home .content {
-    max-width: 50rem;
+/* ---------- Copy ---------- */
+
+.home-title {
+    margin-bottom: var(--space-5);
+    font-size: clamp(4.4rem, 6.2vw, 8.4rem);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -.015em;
 }
 
-.home .content h3 {
-    font-size: 6rem;
-    color: #333;
+.home-title em {
+    display: block;
+    font-style: italic;
+    color: var(--rose);
 }
 
-.home .content span {
-    font-size: 3.5rem;
-    color: var(--pink);
-    padding: 1rem 0;
-    line-height: 1.5;
+.home-lead {
+    max-width: 44rem;
+    font-size: clamp(1.6rem, 1.3vw, 1.8rem);
+    line-height: 1.7;
+    color: var(--text);
 }
 
-.home .content p {
-    font-size: 1.5rem;
-    color: #999;
-    padding: 1rem 0;
-    line-height: 1.5;
+.home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.6rem 3.2rem;
+    margin-top: var(--space-7);
 }
 
-.btn {
-  display: inline-block;
-  margin-top: 1rem;
-  border-radius: 5rem;
-  background: var(--pink);
-  color: #fff;
-  padding: .9rem 3.5rem;
-  cursor: pointer;
-  font-size: 1.7rem;
-  text-decoration: none;
+/* ---------- Visual ---------- */
+
+.home-visual {
+    position: relative;
+    justify-self: end;
+    width: min(100%, 46rem);
 }
 
-.btn-outline {
-  background: transparent;
-  color: var(--pink);
-  border: 2px solid var(--pink);
-  transition: all 0.3s ease;
+/* Offset hairline arch behind the photo */
+.home-visual::before {
+    content: "";
+    position: absolute;
+    inset: -1.8rem -1.8rem 1.8rem 1.8rem;
+    border: 1px solid var(--rose);
+    border-radius: 50% 50% var(--radius) var(--radius) / 36% 36% var(--radius) var(--radius);
+    opacity: .35;
+    pointer-events: none;
 }
 
-.btn-outline:hover {
-  background: var(--pink);
-  color: #fff;
+.home-frame {
+    position: relative;
+    aspect-ratio: 5 / 6;
+    overflow: hidden;
+    border-radius: 50% 50% var(--radius) var(--radius) / 36% 36% var(--radius) var(--radius);
+    background: var(--blush);
+    box-shadow: var(--shadow);
+}
+
+.home-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 94% 50%;
+    transition: transform 1.2s var(--ease);
+}
+
+.home-visual:hover .home-frame img {
+    transform: scale(1.03);
+}
+
+.home-seal {
+    position: absolute;
+    left: -5.2rem;
+    bottom: 5.6rem;
+    width: 11.6rem;
+    height: 11.6rem;
+    filter: drop-shadow(0 1rem 2rem rgba(42, 34, 38, .12));
+}
+
+.home-seal-bg {
+    fill: #fff;
+}
+
+.home-seal-text {
+    font-family: var(--font-body);
+    font-size: 9.4px;
+    font-weight: 600;
+    fill: var(--rose);
+}
+
+.home-seal-mark {
+    color: var(--rose);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 860px) {
+    .home {
+        padding-top: calc(var(--header-h) + 4rem);
+    }
+
+    .home-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 5.6rem;
+    }
+
+    .home-visual {
+        justify-self: center;
+        width: min(100%, 52rem);
+    }
+
+    .home-visual::before {
+        inset: -1rem -1rem 1rem 1rem;
+    }
+
+    .home-frame {
+        aspect-ratio: 1 / 1;
+        border-radius: 50% 50% var(--radius) var(--radius) / 30% 30% var(--radius) var(--radius);
+    }
+
+    .home-visual::before {
+        border-radius: 50% 50% var(--radius) var(--radius) / 30% 30% var(--radius) var(--radius);
+    }
+
+    .home-seal {
+        left: -.8rem;
+        bottom: 2.4rem;
+        width: 9.6rem;
+        height: 9.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-actions {
+        gap: 1.6rem 2.4rem;
+    }
+
+    .home-actions .btn {
+        width: 100%;
+    }
 }

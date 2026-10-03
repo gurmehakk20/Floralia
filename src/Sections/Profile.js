@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../Styles/Profile.css";
-import UpdateProfile from "../Components/UpdateProfile";
 import { useNavigate } from "react-router-dom";
 
 const Profile = ({ user, onLogout, onUpdate }) => {

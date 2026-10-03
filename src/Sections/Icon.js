@@ -1,49 +1,30 @@
 import React from 'react'
 import '../Styles/Icon.css'
-import { FaCartArrowDown } from "react-icons/fa";
-import { TbMoneybag } from "react-icons/tb";
-import { CiGift } from "react-icons/ci";
-import { RiSecurePaymentLine } from "react-icons/ri";
+import { LuTruck, LuRotateCcw, LuFlower2, LuShieldCheck } from "react-icons/lu";
+
+const BENEFITS = [
+  { BenefitIcon: LuTruck, title: 'Free Delivery', text: 'On eligible orders' },
+  { BenefitIcon: LuRotateCcw, title: 'Easy Returns', text: '10-day guarantee' },
+  { BenefitIcon: LuFlower2, title: 'Freshness Guaranteed', text: 'Carefully packed flowers' },
+  { BenefitIcon: LuShieldCheck, title: 'Secure Payments', text: '100% secure checkout' },
+];
 
 const Icon = () => {
   return (
-    <div>
-        <section className="icon-container">
-
-        <div className="icons">
-            <FaCartArrowDown size={"4em"}/>
-            <div className="info">
-                <h3>free delivery</h3>
-                <span>on all orders</span>
+    <section className="icon-container" aria-labelledby="benefits-title">
+      <h2 id="benefits-title" className="visually-hidden">Why shop with Floralia</h2>
+      <ul className="container benefits">
+        {BENEFITS.map(({ BenefitIcon, title, text }) => (
+          <li className="benefit" key={title}>
+            <BenefitIcon className="benefit-icon" aria-hidden="true" />
+            <div>
+              <h3>{title}</h3>
+              <p>{text}</p>
             </div>
-        </div>
-
-        <div className="icons">
-            <TbMoneybag size={"4em"}/>
-            <div className="info">
-                <h3>10 days returns</h3>
-                <span>moneyback guarantee </span>
-            </div>
-        </div>
-
-        <div className="icons">
-            <CiGift size={"4em"}/>
-            <div className="info">
-                <h3>offer & delivery</h3>
-                <span>on all orders</span>
-            </div>
-        </div>
-
-        <div className="icons">
-            <RiSecurePaymentLine size={"4em"}/>
-            <div className="info">
-                <h3>secure payments</h3>
-                <span>protected by paypal</span>
-            </div>
-        </div>
-
+          </li>
+        ))}
+      </ul>
     </section>
-    </div>
   )
 }
 

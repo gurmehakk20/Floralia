@@ -1,50 +1,69 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import '../Styles/Footer.css'
+import Logo from '../Components/Logo'
 
 const Footer = () => {
   return (
-    <div>
-      <section className="footer">
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-grid">
+          <div className="footer-brand">
+            <Link to="/" className="footer-logo" aria-label="Floralia — home">
+              <Logo />
+            </Link>
+            <p>Thoughtfully arranged blooms for birthdays, celebrations, and everyday moments.</p>
+          </div>
 
-        <div className="box-container">
+          <nav className="footer-col" aria-labelledby="footer-shop">
+            <h3 id="footer-shop">Shop</h3>
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/products">Flowers</Link></li>
+              <li><Link to="/#products">Best Sellers</Link></li>
+              <li><Link to="/products">Offers</Link></li>
+            </ul>
+          </nav>
 
-            <div className="box">
-                <h3>quick lines</h3>
-                <a href="#">home</a>
-                <a href="#">about</a>
-                <a href="#">products</a>
-                <a href="#">review</a>
-                <a href="#">contact</a>
-            </div>
+          <nav className="footer-col" aria-labelledby="footer-care">
+            <h3 id="footer-care">Customer Care</h3>
+            <ul>
+              <li><Link to="/profile">My Account</Link></li>
+              <li><Link to="/profile">My Orders</Link></li>
+              <li><Link to="/liked">Wishlist</Link></li>
+              <li><Link to="/#contact">Returns</Link></li>
+            </ul>
+          </nav>
 
-            <div className="box">
-                <h3>quick lines</h3>
-                <a href="#">my account</a>
-                <a href="#">my order</a>
-                <a href="#">my favorites</a>
-            </div>
+          <div className="footer-col">
+            <h3>Locations</h3>
+            <ul>
+              <li>India</li>
+              <li>USA</li>
+              <li>France</li>
+              <li>Japan</li>
+            </ul>
+          </div>
 
-            <div className="box">
-                <h3>locations</h3>
-                <a href="#">India</a>
-                <a href="#">USA</a>
-                <a href="#">france</a>
-                <a href="#">japan</a>
-            </div>
-
-            <div className="box">
-                <h3>contact info</h3>
-                <a href="#">+123-456-7890</a>
-                <a href="#">example@gmail.com</a>
-                <a href="#">Chandigarh, India - 160017</a>
-                <img src="./assets/payment.png" alt=""/>
-            </div>
-
+          <div className="footer-col">
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="tel:+1234567890">+123-456-7890</a></li>
+              <li><a href="mailto:example@gmail.com">example@gmail.com</a></li>
+              <li>Chandigarh, India – 160017</li>
+            </ul>
+          </div>
         </div>
 
-        
-    </section>
-    </div>
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} Floralia. All rights reserved.</p>
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/payment.png`}
+            alt="Accepted payments: American Express, PayPal, Mastercard, Visa and Discover"
+          />
+        </div>
+      </div>
+    </footer>
   )
 }
 

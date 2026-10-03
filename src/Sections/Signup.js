@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import '../Styles/Auth.css';
 import { auth, googleProvider, signInWithPopup, createUserWithEmailAndPassword, db, doc, setDoc, getDoc } from '../Components/firebase';
 
@@ -7,6 +8,9 @@ const Signup = ({ onSignup }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const location = useLocation();
+  // Where to go after signing up, e.g. back to checkout.
+  const redirectTo = location.state?.from || '/';
 
   const handleUserDoc = async (user, userName) => {
     const userRef = doc(db, "users", user.uid);
@@ -24,7 +28,7 @@ const Signup = ({ onSignup }) => {
       });
     }
     const userData = (await getDoc(userRef)).data();
-    onSignup(userData);
+    onSignup(userData, redirectTo);
   };
 
   const handleEmailSignup = async (e) => {
@@ -92,7 +96,7 @@ const Signup = ({ onSignup }) => {
         >
           Sign up with Google
         </button>
-        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>Already have an account? <Link to="/login" state={location.state}>Login</Link></p>
       </form>
     </section>
   );
