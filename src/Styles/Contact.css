@@ -1,5 +1,5 @@
 .contact {
-    background: #fff;
+    background: var(--surface);
 }
 
 .contact-grid {
@@ -102,7 +102,7 @@
     padding: 1.2rem 1.4rem;
     font-size: 1.6rem;
     color: var(--ink);
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-sm);
     transition: border-color .2s var(--ease), box-shadow .2s var(--ease);

@@ -1,6 +1,6 @@
 .occasions {
     padding: 2.8rem var(--gutter);
-    background: #fff;
+    background: var(--surface);
     border-bottom: 1px solid var(--line);
 }
 

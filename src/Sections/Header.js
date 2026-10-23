@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import '../Styles/Header.css';
-import { LuHeart, LuShoppingBag, LuUser, LuMenu, LuX } from "react-icons/lu";
+import { LuHeart, LuShoppingBag, LuUser, LuMenu, LuX, LuSun, LuMoon } from "react-icons/lu";
 import { Link, useLocation } from 'react-router-dom';
 import Logo from '../Components/Logo';
+import useTheme from '../Components/useTheme';
 
 const NAV_LINKS = [
   { label: 'Home', to: { pathname: '/' }, isActive: (loc) => loc.pathname === '/' && !loc.hash },
@@ -16,6 +17,7 @@ const Header = ({ user, cartCount = 0, likedCount = 0 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
@@ -90,6 +92,15 @@ const Header = ({ user, cartCount = 0, likedCount = 0 }) => {
           <Link to={user ? '/profile' : '/login'} className="icon-btn" aria-label={user ? 'Your profile' : 'Log in'}>
             <LuUser aria-hidden="true" />
           </Link>
+          <button
+            type="button"
+            className="icon-btn theme-toggle"
+            onClick={toggleTheme}
+            aria-pressed={theme === 'dark'}
+            aria-label="Dark mode"
+          >
+            {theme === 'dark' ? <LuSun aria-hidden="true" /> : <LuMoon aria-hidden="true" />}
+          </button>
           <button
             type="button"
             id="toggler"

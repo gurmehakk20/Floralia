@@ -12,7 +12,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
@@ -80,7 +80,7 @@
   height: 4rem;
   border-radius: 50%;
   color: var(--ink);
-  background: #fff;
+  background: var(--surface);
   box-shadow: 0 .2rem .8rem rgba(42, 34, 38, .1);
   cursor: pointer;
   transition: color .25s var(--ease), transform .25s var(--ease), opacity .25s var(--ease);

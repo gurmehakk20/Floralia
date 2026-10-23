@@ -1,5 +1,5 @@
 .about {
-    background: #fff;
+    background: var(--surface);
 }
 
 /* About and Latest Products share a white background — don't stack both paddings */

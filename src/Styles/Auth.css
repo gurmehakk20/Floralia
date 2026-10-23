@@ -20,7 +20,7 @@
   max-width: 42rem;
   padding: clamp(2.4rem, 4vw, 4rem);
   text-align: center;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -78,7 +78,7 @@
   font-size: 1.5rem;
   font-weight: 500;
   color: var(--ink);
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
   cursor: pointer;
