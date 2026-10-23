@@ -16,6 +16,7 @@
     --line: #ece4e1;
     --line-strong: #d9cdc9;
     --gold: #c9a15a;
+    --surface: #fff;          /* page and card background */
 
     /* Legacy alias — existing page styles reference --pink */
     --pink: var(--rose);
@@ -53,6 +54,28 @@
     }
 }
 
+/* ---------- Dark theme ---------- */
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --rose: #e0679a;
+    --rose-dark: #ea82ae;
+    --rose-tint: #4a2a39;
+    --blush: #221a1e;
+    --cream: #1d1719;
+    --ink: #f4eaee;
+    --text: #d6cacf;
+    --muted: #a99ca2;
+    --line: #3a2f34;
+    --line-strong: #52444b;
+    --surface: #151013;
+    --shadow: 0 1.6rem 3.6rem -1.8rem rgba(0, 0, 0, .6);
+}
+
+body {
+    transition: background-color .2s var(--ease), color .2s var(--ease);
+}
+
 /* ---------- Base ---------- */
 
 *,
@@ -77,7 +100,7 @@ body {
     font-size: 1.6rem;
     line-height: 1.65;
     color: var(--text);
-    background: #fff;
+    background: var(--surface);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
